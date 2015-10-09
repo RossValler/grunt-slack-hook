@@ -35,6 +35,10 @@ module.exports = function(grunt) {
             data.icon_url = options.icon_url;
         }
 
+        if (this.data.attachments) {
+        	data.attachments = this.data.attachments;
+        }
+
         request.post(options.endpoint).type('form').send('payload=' + JSON.stringify(data)).end(function(res) {
             if (!res.ok) {
                 grunt.log.error('Error sending message to slack: ', res.text);
